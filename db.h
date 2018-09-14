@@ -16,7 +16,7 @@
 
 static inline int GetRequireHeight(const bool testnet = fTestNet)
 {
-    return testnet ? 0 : 0; // Snode TBD populate a mainet height once there 10 blocks
+    return testnet ? 0 : 1000; // Snode TBD populate a mainet height once there 5000 blocks
                              // Nodes that have blocks less than the number are discarded by the crawler
                              // as not good candidates 
 }
@@ -121,7 +121,7 @@ public:
   }
   int GetBanTime() const {
     if (IsGood()) return 0;
-    if (clientVersion && clientVersion < 70912) { return 604800; } // Snode 
+    if (clientVersion && clientVersion < 61000) { return 604800; } // Snode 
     if (stat1M.reliability - stat1M.weight + 1.0 < 0.15 && stat1M.count > 32) { return 30*86400; }
     if (stat1W.reliability - stat1W.weight + 1.0 < 0.10 && stat1W.count > 16) { return 7*86400; }
     if (stat1D.reliability - stat1D.weight + 1.0 < 0.05 && stat1D.count > 8) { return 1*86400; }
